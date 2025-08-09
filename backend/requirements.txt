@@ -8,3 +8,12 @@ scikit-learn
 beautifulsoup4
 requests
 pydantic-settings
+pydantic[email]
+python-multipart
+
+# Database & Autentikasi
+motor
+pymongo[srv]
+passlib==5.3.0
+bcrypt==3.2.2
+python-jose[cryptography]
