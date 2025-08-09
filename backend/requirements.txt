@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+transformers
+torch
+sentencepiece
+scikit-learn
+beautifulsoup4
+requests
+pydantic-settings
