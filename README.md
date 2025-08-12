@@ -80,14 +80,15 @@ news-ai-hoax-checker/
 
 ```mermaid
 graph TD
-    A[Pengguna] -->|Teks / URL| B[Frontend (Next.js)]
-    B -->|Request API| C[Backend (FastAPI)]
-    C --> D1[Summarizer Model (T5)]
-    C --> D2[Hoax Detector (DistilBERT)]
+    A[Pengguna] -->|"Teks atau URL"| B[Frontend - Next.js]
+    B -->|"Request API"| C[Backend - FastAPI]
+    C --> D1[Summarizer Model - T5]
+    C --> D2[Hoax Detector - DistilBERT]
     D1 --> E[(Database MongoDB)]
     D2 --> E
-    C -->|Response JSON| B
-    B -->|Tampilkan Hasil| A
+    C -->|"Response JSON"| B
+    B -->|"Tampilkan Hasil"| A
+    
 ````
 
 ---
