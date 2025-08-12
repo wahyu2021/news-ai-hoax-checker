@@ -1,86 +1,60 @@
 # 📰 AI News Summarizer & Fake News Detector
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Frontend-Next.js-blue?logo=next.js">
-  <img src="https://img.shields.io/badge/Backend-FastAPI-green?logo=fastapi">
-  <img src="https://img.shields.io/badge/Python-3.10+-yellow?logo=python">
-  <img src="https://img.shields.io/badge/Models-HuggingFace-orange?logo=huggingface">
-  <img src="https://img.shields.io/badge/License-MIT-red">
-</p>
+Aplikasi web berbasis AI yang dapat **meringkas artikel berita panjang** dan **mendeteksi apakah berita tersebut hoaks atau tidak**, dibangun dengan **Next.js** untuk frontend dan **FastAPI** untuk backend.
 
 ---
 
 ## 📌 Deskripsi
 
-**AI News Summarizer & Fake News Detector** adalah aplikasi berbasis **kecerdasan buatan** yang dapat:
+Dengan memasukkan **teks berita** atau **URL artikel**, pengguna akan mendapatkan:
 
-- 📄 **Meringkas berita panjang** menjadi singkat & padat.
-- 🔍 **Mendeteksi berita hoaks** menggunakan model NLP.
-- 📊 Menampilkan **confidence score** sebagai tingkat keyakinan.
-
-**Stack utama:**  
-Frontend → **Next.js**  
-Backend → **FastAPI**  
-AI Models → **HuggingFace Transformers**  
+- Ringkasan singkat dari berita.
+- Prediksi **Valid** atau **Hoaks**.
+- Skor kepercayaan (confidence score) dari model AI.
 
 ---
 
-## 🎯 Tujuan
+## 🎯 Tujuan Proyek
 
-- ⏱ **Cepat Memahami** inti berita hanya dalam beberapa kalimat.
-- 🛡 **Validasi Fakta** untuk melawan hoaks & misinformasi.
-- 📚 **Literasi Digital** dengan meningkatkan kesadaran pengguna.
+- **Kecepatan Memahami** → Mempercepat pemahaman inti berita melalui ringkasan otomatis.
+- **Validasi Informasi** → Membantu pengguna mengidentifikasi potensi berita palsu/hoaks.
+- **Literasi Digital** → Meningkatkan kesadaran publik terhadap misinformasi di era digital.
 
 ---
 
-## ✨ Fitur Utama
+## ✨ Fitur
 
-| Fitur | Deskripsi |
-|-------|-----------|
-| 📝 Ringkas Berita | Gunakan model `T5` untuk meringkas teks. |
-| 🕵️ Deteksi Hoaks | Model `DistilBERT` untuk klasifikasi Valid/Hoaks. |
-| 🌐 Ekstraksi URL | Ambil teks otomatis dari artikel online. |
-| 🔑 Autentikasi | Login & Registrasi pengguna dengan JWT. |
-| 📊 Confidence Score | Persentase keyakinan prediksi model. |
-| 🎨 UI Modern | Dibangun dengan TailwindCSS & animasi Framer Motion. |
+- ✅ **Input Ganda**: Menerima input berupa **teks berita** atau **URL artikel**.
+- ✅ **Peringkas AI**: Menggunakan model `T5` untuk membuat ringkasan.
+- ✅ **Detektor Hoaks**: Ditenagai oleh model `DistilBERT` untuk klasifikasi teks.
+- ✅ **Skor Kepercayaan**: Menampilkan persentase keyakinan model terhadap hasil prediksi.
+- ✅ **Ekstraksi URL Otomatis**: Mengambil konten teks langsung dari URL berita.
+- ✅ **Autentikasi Pengguna**: Login dan registrasi untuk mengamankan akses.
+- ✅ **Antarmuka Modern**: Responsif, interaktif, dan menarik.
 
 ---
 
 ## 🛠 Tech Stack
 
-| Layer | Teknologi |
-|-------|-----------|
+| Komponen     | Teknologi |
+| ------------ | --------- |
 | **Frontend** | Next.js, React.js, TailwindCSS, TypeScript, Framer Motion |
-| **Backend** | FastAPI, Python |
-| **AI Models** | `Falconsai/text_summarization`, `dafqi/DistilBERT-Hoax-Detection` |
-| **Database** | MongoDB (Motor) |
-| **Libraries** | transformers, torch, uvicorn, passlib, python-jose |
-
----
-
-## 🏗 Arsitektur Sistem
-
-```mermaid
-graph TD
-    A[👤 Pengguna] -->|Teks/URL| B[🌐 Frontend (Next.js)]
-    B -->|Request API| C[⚡ Backend (FastAPI)]
-    C --> D1[📝 Summarizer Model (T5)]
-    C --> D2[🕵️ Hoax Detector (DistilBERT)]
-    D1 --> E[(🗄 Database MongoDB)]
-    D2 --> E
-    C -->|Response JSON| B
-    B -->|Tampilkan Hasil| A
-````
+| **Backend**  | FastAPI, Python |
+| **Model AI** | Summarizer: `Falconsai/text_summarization`<br>Detector: `dafqi/DistilBERT-Hoax-Detection` |
+| **Libraries**| `transformers`, `torch`, `uvicorn`, `passlib`, `python-jose` |
+| **Database** | MongoDB (via Motor) |
 
 ---
 
 ## 📂 Struktur Folder
 
 ```
+
 news-ai-hoax-checker/
 ├── backend/
 │   ├── app/
-│   │   ├── api/endpoints/
+│   │   ├── api/
+│   │   │   └── endpoints/
 │   │   ├── core/
 │   │   ├── db/
 │   │   ├── models/
@@ -88,14 +62,33 @@ news-ai-hoax-checker/
 │   │   └── services/
 │   ├── main.py
 │   ├── requirements.txt
-│   └── .env.example
+│   └── .env (Contoh)
 └── frontend/
-    ├── app/
-    ├── components/
-    ├── actions/
-    ├── lib/
-    └── package.json
-```
+├── app/
+├── components/
+│   ├── analysis/
+│   └── auth/
+├── actions/
+├── lib/
+└── package.json
+
+````
+
+---
+
+## 🏗 Arsitektur Sistem
+
+```mermaid
+graph TD
+    A[Pengguna] -->|Teks / URL| B[Frontend (Next.js)]
+    B -->|Request API| C[Backend (FastAPI)]
+    C --> D1[Summarizer Model (T5)]
+    C --> D2[Hoax Detector (DistilBERT)]
+    D1 --> E[(Database MongoDB)]
+    D2 --> E
+    C -->|Response JSON| B
+    B -->|Tampilkan Hasil| A
+````
 
 ---
 
@@ -104,20 +97,34 @@ news-ai-hoax-checker/
 ### 1️⃣ Backend (FastAPI)
 
 ```bash
+# Clone repository
 git clone https://github.com/wahyu2021/news-ai-hoax-checker.git
 cd news-ai-hoax-checker/backend
 
+# Buat dan aktifkan virtual environment
 python -m venv venv
-source venv/Scripts/activate   # Windows
-# source venv/bin/activate     # Mac/Linux
+# Windows (Git Bash)
+source venv/Scripts/activate
+# Mac/Linux
+# source venv/bin/activate
 
+# Install dependencies
 pip install -r requirements.txt
 
-cp .env.example .env
+# Buat file .env dan isi variabel yang diperlukan
+echo "SUMMARIZER_MODEL=Falconsai/text_summarization" > .env
+echo "DETECTOR_MODEL=dafqi/DistilBERT-Hoax-Detection" >> .env
+echo "DATABASE_URL=mongodb://localhost:27017" >> .env
+echo "DATABASE_NAME=news_ai_db" >> .env
+echo "SECRET_KEY=kunci_rahasia_anda" >> .env
+echo "ALGORITHM=HS256" >> .env
+echo "ACCESS_TOKEN_EXPIRE_MINUTES=30" >> .env
+
+# Jalankan server
 uvicorn main:app --reload
 ```
 
-📍 **Akses Backend:** [http://localhost:8000](http://localhost:8000)
+Server: [http://localhost:8000](http://localhost:8000)
 
 ---
 
@@ -125,43 +132,49 @@ uvicorn main:app --reload
 
 ```bash
 cd ../frontend
+
+# Install dependencies
 npm install
+
+# Jalankan development server
 npm run dev
 ```
 
-📍 **Akses Frontend:** [http://localhost:3000](http://localhost:3000)
+Akses aplikasi di: [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## 📡 API Example
+## 📡 API
 
-**Endpoint:** `POST /api/v1/analyze`
-**Body (Teks):**
+**Endpoint**: `POST /api/v1/analyze`
+**Auth**: Bearer Token (didapat setelah login)
+
+**Body (Teks)**:
 
 ```json
 {
-  "text": "Contoh berita panjang...",
+  "text": "Anggota Komisi IV DPR RI meminta pemerintah tidak melanjutkan rencana impor beras...",
   "url": null
 }
 ```
 
-**Body (URL):**
+**Body (URL)**:
 
 ```json
 {
   "text": null,
-  "url": "https://example.com/berita"
+  "url": "https://www.antaranews.com/berita/contoh-artikel"
 }
 ```
 
-**Response:**
+**Respons**:
 
 ```json
 {
-  "summary": "Ringkasan berita...",
+  "summary": "Anggota Komisi IV DPR RI meminta pemerintah untuk tidak melanjutkan rencana impor beras...",
   "prediction": "Valid",
-  "confidence_score": 0.98,
-  "original_text": "Teks berita lengkap..."
+  "confidence_score": 0.995,
+  "original_text": "Teks lengkap berita..."
 }
 ```
 
@@ -169,11 +182,15 @@ npm run dev
 
 ## 🗺 Roadmap
 
-* [x] Autentikasi pengguna
-* [x] Input teks & URL
+* [x] **Autentikasi Pengguna**.
+* [x] Simpan Riwayat Analisis.
+* [ ] Panel Admin.
+* [ ] Fitur Tanya Jawab.
+* [ ] Dukungan Multi-bahasa.
 
 ---
 
 ## 📜 Lisensi
 
-MIT License © 2025 [Wahyu Wahid Nugroho](https://github.com/wahyu2021)
+MIT License © 2025 Wahyu Wahid Nugroho
+
