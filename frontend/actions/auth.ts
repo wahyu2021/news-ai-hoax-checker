@@ -24,10 +24,15 @@ export async function login (data: unknown): Promise<ActionResult>{
     }
 
     try {
+        const { email, password } = result.data;
+        const formData = new URLSearchParams();
+        formData.append('username', email);
+        formData.append('password', password);
+
         const response = await fetch(`${API_URL}/auth/login`, {
             method:'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: formData
         });
 
         const responseData = await response.json()
@@ -71,3 +76,6 @@ export async function register (data: unknown): Promise<ActionResult>{
     }
 }
 
+export async function logout(): Promise<void> {
+    (await cookies()).set("session_token", "", { expires: new Date(0) });
+}
